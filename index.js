@@ -15,10 +15,12 @@ let [width, length] = [10, 10]
 let id = 1;
 
 let block = (x, y, width, length) => {
-	let range_x = range(x, x + length).map(x => x * 3);
-	let range_y = range(y, y - width).map(x => x * 3);
+	let range_x = ' '.repeat(x + length).split(' ').map((_, i) => (30 * i) + x)
+	
+	let range_y = ' '.repeat(y - width).split(' ').map((_, i) => (30 * i) + y);
 	
 	range_x.forEach(cx => {
+		console.log(cx)
 		range_y.forEach(cy => {
 			$.add({
 				OBJ_ID: id,
