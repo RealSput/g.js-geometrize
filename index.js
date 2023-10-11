@@ -37,6 +37,9 @@ function rgb2hsv (r, g, b) {
 	return `${hue}a${saturation}a${brightness}a0a0`;
 }
 
+let DRAW_SCALE = 2;
+
+
 let col = unknown_c();
 col.set(rgb(255, 0, 0));
 
@@ -47,9 +50,9 @@ let circle = (x, y, radius, rgba) => {
 
 	$.add({
 		OBJ_ID: 1764,
-		X: x,
-		Y: y,
-		SCALING: radius / 4,
+		X: x / DRAW_SCALE,
+		Y: y / DRAW_SCALE,
+		SCALING: radius / DRAW_SCALE / 4,
 		HVS_ENABLED: 1,
 		HVS: str,
 		COLOR: col,
@@ -58,6 +61,7 @@ let circle = (x, y, radius, rgba) => {
 	
 	zo++;
 }
+
 
 (async () => {
   let image = await Jimp.read('art.png')
@@ -71,7 +75,7 @@ let circle = (x, y, radius, rgba) => {
     shapeMutationsPerStep: 100,
     alpha: 255
   }
-  const iterations = 200
+  const iterations = 500
   const shapes = []
   for (let i = 0; i < iterations;i++) {
 	   // data: 0 = x, 1 = y, 2 = width, 3 = height
